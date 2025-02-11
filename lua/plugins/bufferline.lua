@@ -15,6 +15,7 @@ return {
             },
             separator_style = 'slope',
             show_duplicate_prefix = true,
+            always_show_bufferline = true,
             tab_size = 18,
             highlights = {
                 fill = {
