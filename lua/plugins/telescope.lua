@@ -18,13 +18,13 @@ return {
             winblend = 0,
         },
         pickers = {
-      buffers = {
-        mappings = {
-          i = {
-            ["<c-d>"] = "delete_buffer",
-          }
-        }
-      }
-    }
+            buffers = {
+                mappings = {
+                    i = {
+                        ['<c-d>'] = 'delete_buffer',
+                    },
+                },
+            },
+        },
     },
 }
