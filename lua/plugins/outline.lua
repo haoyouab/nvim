@@ -15,7 +15,7 @@ return {
             },
             outline_window = {
                 position = 'left',
-                width = 12,
+                width = 15,
             },
         }
 

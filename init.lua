@@ -9,7 +9,7 @@ vim.opt.termguicolors = true
 
 vim.api.nvim_create_autocmd('BufEnter', {
     callback = function()
-        if vim.bo.filetype == 'Outline' and vim.fn.winnr('$') == 1 then
+        if vim.bo.filetype == 'aerial' and vim.fn.winnr('$') == 1 then
             vim.cmd('qa')
         end
     end,
