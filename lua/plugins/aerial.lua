@@ -34,7 +34,7 @@ return {
             -- Preserve window size equality with (:help CTRL-W_=)
             preserve_equality = true,
         },
-        close_automatic_events = { 'unfocus' },
+        -- close_automatic_events = { 'unfocus' },
         nerd_font = 'auto',
     },
 }
