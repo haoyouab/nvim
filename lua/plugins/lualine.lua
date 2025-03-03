@@ -13,7 +13,10 @@ return {
                 statusline = {},
                 winbar = {},
             },
-            ignore_focus = {},
+            ignore_focus = {
+                'aerial',
+                'neo-tree',
+            },
             always_divide_middle = true,
             always_show_tabline = true,
             globalstatus = false,
@@ -32,32 +35,8 @@ return {
                 },
             },
             lualine_b = { 'branch', 'diff', 'diagnostics' },
-            lualine_c = {
-                { 'filename', path = 3 },
-                {
-                    'aerial',
-                    -- The separator to be used to separate symbols in status line.
-                    sep = ' ) ',
-
-                    -- The number of symbols to render top-down. In order to render only 'N' last
-                    -- symbols, negative numbers may be supplied. For instance, 'depth = -1' can
-                    -- be used in order to render only current symbol.
-                    depth = nil,
-
-                    -- When 'dense' mode is on, icons are not rendered near their symbols. Only
-                    -- a single icon that represents the kind of current symbol is rendered at
-                    -- the beginning of status line.
-                    dense = false,
-
-                    -- The separator to be used to separate symbols in dense mode.
-                    dense_sep = '.',
-
-                    -- Color the symbol icons.
-                    colored = true,
-                },
-            },
-            -- lualine_x = { 'encoding', 'fileformat', 'filetype' },
-            lualine_x = {},
+            lualine_c = {},
+            lualine_x = { 'encoding', 'fileformat', 'filetype' },
             lualine_y = { 'progress' },
             lualine_z = {
                 {
@@ -104,8 +83,49 @@ return {
                 },
             },
         },
-        winbar = {},
-        inactive_winbar = {},
+        winbar = {
+            lualine_a = {},
+            lualine_b = {},
+            lualine_c = {
+                {
+                    'filename',
+                    path = 1,
+                },
+                {
+                    'aerial',
+                    -- The separator to be used to separate symbols in status line.
+                    sep = ' ) ',
+
+                    -- The number of symbols to render top-down. In order to render only 'N' last
+                    -- symbols, negative numbers may be supplied. For instance, 'depth = -1' can
+                    -- be used in order to render only current symbol.
+                    depth = nil,
+
+                    -- When 'dense' mode is on, icons are not rendered near their symbols. Only
+                    -- a single icon that represents the kind of current symbol is rendered at
+                    -- the beginning of status line.
+                    dense = false,
+
+                    -- The separator to be used to separate symbols in dense mode.
+                    dense_sep = '.',
+
+                    -- Color the symbol icons.
+                    colored = true,
+                },
+            },
+            lualine_x = {},
+            lualine_y = {},
+            lualine_z = {},
+        },
+
+        inactive_winbar = {
+            lualine_a = {},
+            lualine_b = {},
+            lualine_c = {},
+            lualine_x = {},
+            lualine_y = {},
+            lualine_z = {},
+        },
         extensions = {
             'aerial',
             'neo-tree',
