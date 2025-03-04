@@ -2,9 +2,9 @@
 require('config.lazy')
 require('config.toggle-term')
 
+vim.cmd.colorscheme "vscode"
 vim.opt.relativenumber = false
 vim.opt.mouse = 'r'
-vim.cmd('colorscheme vscode')
 vim.opt.termguicolors = true
 
 vim.api.nvim_create_autocmd('BufEnter', {
