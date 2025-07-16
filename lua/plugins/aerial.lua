@@ -32,8 +32,9 @@ return {
             resize_to_content = true,
 
             -- Preserve window size equality with (:help CTRL-W_=)
-            preserve_equality = true,
+            preserve_equality = false,
         },
+        disable_max_lines = 20000,
         close_automatic_events = { 'unsupported' },
         nerd_font = 'auto',
     },
