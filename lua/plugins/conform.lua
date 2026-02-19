@@ -25,6 +25,7 @@ return {
             rust = { 'rustfmt' },
             c = { 'clang-format' },
             cpp = { 'clang-format' },
+            json = { "prettier" },
         },
         formatters = {
             rustfmt = {
