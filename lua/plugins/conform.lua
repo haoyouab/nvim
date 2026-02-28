@@ -25,7 +25,8 @@ return {
             rust = { 'rustfmt' },
             c = { 'clang-format' },
             cpp = { 'clang-format' },
-            json = { "prettier" },
+            json = { 'prettier' },
+            toml = { 'taplo' },
         },
         formatters = {
             rustfmt = {
