@@ -80,7 +80,7 @@ return {
                         alpha = 'Alpha',
                         aerial = 'Aerial',
                     },
-                    max_length = vim.o.columns * 19 / 20,
+                    max_length = function() return vim.o.columns * 19 / 20 end,
                 },
             },
             lualine_b = {},

@@ -5,10 +5,10 @@ vim.g.autoformat = false
 
 vim.opt.clipboard = ""
 vim.keymap.set({ "n", "x" }, "y", '"+y')
-vim.keymap.set("n", "p", '""p')
--- vim.api.nvim_set_keymap('n', 'ZQ', ':qa<CR>', {})
--- vim.api.nvim_set_keymap('n', 'ZZ', ':wqa<CR>', {})
---
+
+vim.opt.relativenumber = false
+vim.opt.mouse = 'r'
 vim.opt.splitbelow = false
 vim.opt.wrap = true
 vim.opt.ignorecase = false
+vim.opt.showtabline = 2

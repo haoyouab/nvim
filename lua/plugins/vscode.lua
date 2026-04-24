@@ -1,5 +1,4 @@
 return {
-    'Mofiqul/vscode.nvim',
-    'tomasiser/vim-code-dark',
-    lazy = false,
+    { 'Mofiqul/vscode.nvim', lazy = false },
+    { 'tomasiser/vim-code-dark', lazy = false },
 }
