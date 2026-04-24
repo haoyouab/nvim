@@ -33,10 +33,6 @@ return {
             callback = function()
                 local kopts = { noremap = true, buffer = 0 }
                 vim.keymap.set('t', '<esc><esc>', [[<C-\><C-n>]], kopts)
-                vim.keymap.set('t', '<C-h>', [[<C-\><C-n><C-W>h]], kopts)
-                vim.keymap.set('t', '<C-j>', [[<C-\><C-n><C-W>j]], kopts)
-                vim.keymap.set('t', '<C-k>', [[<C-\><C-n><C-W>k]], kopts)
-                vim.keymap.set('t', '<C-l>', [[<C-\><C-n><C-W>l]], kopts)
             end,
         })
 
