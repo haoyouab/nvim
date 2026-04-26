@@ -7,6 +7,19 @@
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
+-- Save Session.vim on exit so tmux-resurrect can restore nvim via `nvim -S`
+vim.api.nvim_create_autocmd("VimLeavePre", {
+  group = vim.api.nvim_create_augroup("save_session_for_resurrect", { clear = true }),
+  callback = function()
+    for _, buf in ipairs(vim.fn.getbufinfo({ buflisted = 1 })) do
+      if buf.name ~= "" then
+        vim.cmd("mksession! Session.vim")
+        return
+      end
+    end
+  end,
+})
+
 local sidebar_ft = { "aerial", "neo-tree", "Outline", "toggleterm", "trouble", "lazy", "mason" }
 local has_opened_file = false
 
