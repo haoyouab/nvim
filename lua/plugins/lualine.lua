@@ -11,7 +11,14 @@ return {
 
             disabled_filetypes = {
                 statusline = {},
-                winbar = {},
+                winbar = {
+                    'dap-repl',
+                    'dapui_scopes',
+                    'dapui_breakpoints',
+                    'dapui_stacks',
+                    'dapui_watches',
+                    'dapui_console',
+                },
             },
             ignore_focus = {
                 'aerial',

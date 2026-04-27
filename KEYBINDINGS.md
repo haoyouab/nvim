@@ -310,10 +310,24 @@
 
 ## DAP (Debugger)
 
+### Quick Keys (F-keys)
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<F5>` | n | Continue / Start debugging |
+| `<F6>` | n | Terminate debugging |
+| `<F9>` | n | Toggle breakpoint |
+| `<F10>` | n | Step over |
+| `<F11>` | n | Step into |
+| `<S-F11>` | n | Step out |
+
+### Leader Keys
+
 | Key | Mode | Description |
 |-----|------|-------------|
 | `<leader>db` | n | Toggle breakpoint |
 | `<leader>dB` | n | Breakpoint with condition |
+| `<leader>dL` | n | Log point (breakpoint with message) |
 | `<leader>dc` | n | Continue / Start |
 | `<leader>da` | n | Run with args |
 | `<leader>dC` | n | Run to cursor |
@@ -330,6 +344,13 @@
 | `<leader>dw` | n | Hover widgets |
 | `<leader>du` | n | Toggle DAP UI |
 | `<leader>de` | n/x | Eval expression |
+
+### Available Debug Adapters (C/C++)
+
+| Adapter | Backend | Configurations |
+|---------|---------|----------------|
+| codelldb | LLDB | Launch file, Attach to process |
+| cppdbg | GDB (via cpptools) | Launch, Launch with args, Attach to process, Attach to gdbserver |
 
 ---
 
