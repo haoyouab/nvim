@@ -12,6 +12,7 @@ return {
             disabled_filetypes = {
                 statusline = {},
                 winbar = {
+                    'aerial',
                     'dap-repl',
                     'dapui_scopes',
                     'dapui_breakpoints',
