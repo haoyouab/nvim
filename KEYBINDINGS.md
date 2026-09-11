@@ -215,7 +215,7 @@
 | `<leader>cC` | n | Refresh & display codelens |
 | `<leader>cd` | n | Line diagnostics (float) |
 | `<leader>cl` | n | LSP info |
-| `<leader>co` | n | Organize imports |
+| `<leader>co` | n | Organize imports (TS/JS only, see below) |
 | `]d` / `[d` | n | Next/Prev diagnostic |
 | `]e` / `[e` | n | Next/Prev error |
 | `]w` / `[w` | n | Next/Prev warning |
@@ -234,6 +234,22 @@
 | `<leader>a` | n | Rust code action (with grouping) |
 | `K` | n | Rust hover actions (overrides default) |
 | `<leader>m` | n | Expand macro |
+
+### TypeScript / JavaScript (vtsls)
+
+Active in `typescript`, `typescriptreact`, `javascript`, `javascriptreact` buffers.
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `gD` | n | Goto source definition (overrides goto declaration) |
+| `gR` | n | File references |
+| `<leader>cM` | n | Add missing imports |
+| `<leader>co` | n | Organize imports |
+| `<leader>cu` | n | Remove unused imports |
+| `<leader>cD` | n | Fix all diagnostics |
+| `<leader>cV` | n | Select TypeScript workspace version |
+
+ESLint runs alongside vtsls for diagnostics only; formatting is prettier via `<leader>cf`.
 
 ---
 
@@ -351,6 +367,15 @@
 |---------|---------|----------------|
 | codelldb | LLDB | Launch file, Attach to process |
 | cppdbg | GDB (via cpptools) | Launch, Launch with args, Attach to process, Attach to gdbserver |
+
+### Available Debug Adapters (TypeScript / JavaScript)
+
+| Adapter | Backend | Configurations |
+|---------|---------|----------------|
+| pwa-node | js-debug-adapter | Launch file, Attach (pick process) |
+
+Debugging a `.ts` file directly needs `tsx` or `ts-node` on `$PATH`; plain `.js` runs on node as-is.
+`.vscode/launch.json` configurations are picked up automatically for node/pwa-node types.
 
 ---
 

@@ -16,9 +16,9 @@ return {
             css = { 'prettier' },
             htmldjango = { 'prettier' },
             javascript = { 'prettier' },
-            javascriptreact = { 'prettier' }, -- optional
-            typescript = { 'prettier' }, -- optional
-            typescriptreact = { 'prettier' }, -- optional
+            javascriptreact = { 'prettier' },
+            typescript = { 'prettier' },
+            typescriptreact = { 'prettier' },
             python = { 'black' },
             sh = { 'shfmt' },
             bash = { 'shfmt' },
@@ -26,6 +26,7 @@ return {
             c = { 'clang-format' },
             cpp = { 'clang-format' },
             json = { 'prettier' },
+            jsonc = { 'prettier' },
             toml = { 'taplo' },
         },
         formatters = {

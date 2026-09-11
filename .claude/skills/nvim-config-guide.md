@@ -28,7 +28,8 @@ This is a **LazyVim-based Neovim configuration** using the **lazy.nvim** plugin 
 │       ├── bufferline.lua            # Buffer line (disabled)
 │       ├── claude.lua                # Claude Code integration
 │       ├── conform.lua               # Code formatter
-│       ├── copilot.lua               # GitHub Copilot
+│       ├── copilot.lua               # GitHub Copilot (disabled)
+│       ├── dap.lua                   # Debug adapters (cppdbg/GDB) + DAP UI layout
 │       ├── example.lua               # LazyVim example (disabled)
 │       ├── lazygit.lua               # LazyGit (disabled, uses toggleterm instead)
 │       ├── lspconfig.lua             # LSP server config (clangd)
@@ -40,7 +41,10 @@ This is a **LazyVim-based Neovim configuration** using the **lazy.nvim** plugin 
 │       ├── telescope.lua             # Fuzzy finder
 │       ├── toggle-term.lua           # Terminal manager
 │       ├── trouble.lua               # Diagnostics viewer
+│       ├── typescript.lua           # TypeScript/JS overrides (vtsls keymaps, prettier)
 │       └── vscode.lua                # Colorschemes
+├── scripts/
+│   └── sudo-gdb.sh                   # GDB wrapper for privileged debugging
 ├── after/
 │   └── ftplugin/
 │       ├── c.lua                     # C ftplugin (8-space tabs without .editorconfig)
@@ -60,9 +64,10 @@ This is a **LazyVim-based Neovim configuration** using the **lazy.nvim** plugin 
 |----------|-------|
 | DAP | `lazyvim.plugins.extras.dap.core` |
 | Editor | `aerial`, `illuminate`, `outline`, `neo-tree`, `telescope` |
-| Lang | `clangd`, `json`, `markdown`, `cmake`, `git`, `rust`, `toml` |
+| Lang | `clangd`, `json`, `markdown`, `python`, `cmake`, `git`, `go`, `rust`, `toml`, `typescript` |
+| Linting | `eslint` |
 
-## All Plugins (56 total, from lazy-lock.json)
+## All Plugins (58 total, from lazy-lock.json)
 
 ### Core / Framework
 | Plugin | Description |
@@ -116,6 +121,7 @@ This is a **LazyVim-based Neovim configuration** using the **lazy.nvim** plugin 
 | `trouble.nvim` | Diagnostics list (LSP mode as floating bottom window) |
 | `nvim-lint` | Linter framework |
 | `lazydev.nvim` | Lua dev setup for lazy.nvim |
+| `vtsls` (via mason) | TypeScript/JS LSP; `eslint-lsp` runs alongside for diagnostics |
 
 ### Formatting
 | Plugin | Description |
@@ -131,7 +137,7 @@ This is a **LazyVim-based Neovim configuration** using the **lazy.nvim** plugin 
 | sh / bash | shfmt |
 | rust | rustfmt (via `rustup run nightly`, edition 2024) |
 | c / cpp | clang-format (respects .editorconfig) |
-| json | prettier |
+| json / jsonc | prettier |
 | toml | taplo |
 
 ### DAP (Debugging)
@@ -142,6 +148,8 @@ This is a **LazyVim-based Neovim configuration** using the **lazy.nvim** plugin 
 | `nvim-dap-virtual-text` | Virtual text for DAP |
 | `mason-nvim-dap.nvim` | Mason↔DAP bridge |
 | `nvim-nio` | Async for DAP UI |
+| `nvim-dap-python` / `nvim-dap-go` | Python / Go debug adapters |
+| `js-debug-adapter` (via mason) | Node/Chrome debugging for TS/JS (`pwa-node`) |
 
 ### Git
 | Plugin | Description |
@@ -218,6 +226,9 @@ This is a **LazyVim-based Neovim configuration** using the **lazy.nvim** plugin 
 | `<leader>ay` | n | Accept Claude diff |
 | `<leader>an` | n | Deny Claude diff |
 | `<leader>cf` | n/v | Format via Conform |
+| `gD` / `gR` | n (ts/js) | Goto source definition / file references |
+| `<leader>cM` / `<leader>co` / `<leader>cu` | n (ts/js) | Add missing / organize / remove unused imports |
+| `<leader>cD` / `<leader>cV` | n (ts/js) | Fix all diagnostics / select TS version |
 | `<leader>a` | n (rust) | Rust code action |
 | `K` | n (rust) | Rust hover actions |
 | `<leader>m` | n (rust) | Rust expand macro |
@@ -244,14 +255,15 @@ Plugin update checker: enabled, no notification
 |----------|-----|-----------|----------|--------|
 | C/C++ | clangd (custom args) | clang-format (.editorconfig-aware) | DAP | cmake-tools, clangd_extensions |
 | Rust | rustaceanvim | rustfmt (nightly, edition 2024) | DAP | crates.nvim |
-| Python | pyright (via Mason) | black | DAP | — |
-| JS/TS | ts_ls (via LazyVim) | prettier | DAP | — |
+| Python | pyright (via Mason) | black | DAP (nvim-dap-python) | venv-selector, ruff |
+| JS/TS/TSX | vtsls + eslint (diagnostics) | prettier | DAP (`pwa-node`, js-debug-adapter) | ts-autotag, mini.icons file glyphs |
 | HTML/CSS | via LazyVim | prettier | — | — |
 | JSON | jsonls + SchemaStore | prettier | — | — |
 | Markdown | marksman | — | — | markdown-preview, render-markdown |
 | TOML | taplo | taplo | — | — |
 | Shell | via Mason | shfmt | — | — |
 | Lua | lua_ls (via LazyVim) | stylua | — | lazydev |
+| Go | gopls (via Mason) | gofumpt/goimports | DAP (nvim-dap-go, dlv) | golangci-lint |
 | Git | — | — | — | LazyVim git extras |
 
 ## Notable Design Decisions
@@ -265,3 +277,5 @@ Plugin update checker: enabled, no notification
 7. **Claude Code integrated**: Right-side split (40%), prefers `cfuse` binary, full diff accept/deny workflow
 8. **Session persistence for tmux**: Auto-saves `Session.vim` on exit for tmux-resurrect compatibility
 9. **Smart auto-close**: Quits Neovim when only sidebar/terminal windows remain after closing a file buffer
+10. **TypeScript: vtsls + eslint split roles** — vtsls owns completion/refactors, eslint is diagnostics-only (`vim.g.lazyvim_eslint_auto_format = false`), prettier owns formatting via conform, so the three never fight over the buffer
+11. **`servers.vtsls.keys` extended via opts function** — a plain opts table would overwrite the LazyVim extra's keymap list instead of appending to it

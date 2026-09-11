@@ -3,6 +3,9 @@
 -- Add any additional options here
 vim.g.autoformat = false
 
+-- eslint provides diagnostics only; prettier (via conform) owns formatting
+vim.g.lazyvim_eslint_auto_format = false
+
 vim.opt.clipboard = ""
 vim.keymap.set({ "n", "x" }, "y", '"+y')
 
